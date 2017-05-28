@@ -4,8 +4,8 @@ set -e
 COMMIT_HASH=daee43b89171725a719f0bafebbb348d855156fe
 PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
 git clone https://github.com/libgit2/git2go.git $PROJPATH
-git checkout -qf $COMMIT_HASH
 cd $PROJPATH
+git checkout -qf $COMMIT_HASH
 git submodule update --init
 sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
 sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
