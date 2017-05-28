@@ -14,13 +14,13 @@ mkdir build
 cd build
 
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
-export GOROOT=/c/Go/
-export GOPATH=/c/gopath
-export BUILD="$PWD/vendor/libgit2/build"
-export PCFILE="$BUILD/libgit2.pc"
-FLAGS="${FLAGS} -lws2_32"
-export CGO_LDFLAGS="$BUILD/libgit2.a -L$BUILD ${FLAGS}"
-export CGO_CFLAGS="-I$PWD/vendor/libgit2/include"
+# export GOROOT=/c/Go/
+# export GOPATH=/c/gopath
+# export BUILD="$PWD/vendor/libgit2/build"
+# export PCFILE="$BUILD/libgit2.pc"
+# FLAGS="${FLAGS} -lws2_32"
+# export CGO_LDFLAGS="$BUILD/libgit2.a -L$BUILD ${FLAGS}"
+# export CGO_CFLAGS="-I$PWD/vendor/libgit2/include"
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
       -DBUILD_SHARED_LIBS=OFF \
