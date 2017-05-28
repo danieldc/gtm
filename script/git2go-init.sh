@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 COMMIT_HASH=daee43b89171725a719f0bafebbb348d855156fe
 PROJPATH="$GOPATH/src/github.com/libgit2/git2go"

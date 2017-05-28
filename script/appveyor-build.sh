@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
 
