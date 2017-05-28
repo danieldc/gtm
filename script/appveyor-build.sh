@@ -4,7 +4,6 @@ export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$
 GIT2GO_PATH=$GOPATH/src/github.com/libgit2/git2go
 cd $GIT2GO_PATH
 cd vendor/libgit2 && mkdir build && cd build
-
 LIBGIT2_BUILD=$GIT2GO_PATH/vendor/libgit2/build
 FLAGS="-lws2_32"
 export CGO_LDFLAGS="$LIBGIT2_BUILD/libgit2.a -L$LIBGIT2_BUILD ${FLAGS}"
@@ -17,16 +16,12 @@ cmake -DTHREADSAFE=ON \
       -DWINHTTP=OFF \
       -G "MSYS Makefiles" \
       .. &&
-
 cmake --build . --target install
-
-cd $LIBGIT2_PATH
-go install --tags static
+cd $GIT2GO_PATH && go install --tags static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
 go get -d ./...
 go test --tags static ./...
-
 if [[ "${APPVEYOR_REPO_TAG}" = true ]]; then
     go build --tags static -v -ldflags "-X main.Version=${APPVEYOR_REPO_TAG_NAME}"
     tar -zcf gtm.${APPVEYOR_REPO_TAG_NAME}.windows.tar.gz gtm.exe
