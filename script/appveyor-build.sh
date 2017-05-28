@@ -2,8 +2,7 @@
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
 
 GIT2GO_PATH=$GOPATH/src/github.com/libgit2/git2go
-cd $GIT2GO_PATH
-cd vendor/libgit2 && mkdir build && cd build
+cd $GIT2GO_PATH/vendor/libgit2 && mkdir build && cd build
 LIBGIT2_BUILD=$GIT2GO_PATH/vendor/libgit2/build
 FLAGS="-lws2_32"
 export CGO_LDFLAGS="$LIBGIT2_BUILD/libgit2.a -L$LIBGIT2_BUILD ${FLAGS}"
