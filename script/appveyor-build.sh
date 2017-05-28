@@ -12,6 +12,9 @@ git submodule update --init
 cd vendor/libgit2
 mkdir build
 cd build
+export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
+export GOROOT=/c/Go/
+export GOPATH=/c/gopath
 cmake .. -DBUILD_SHARED_LIBS=OFF -DBUILD_CLAR=OFF -DTHREADSAFE=ON
 cmake --build .
 cmake --build . --target install
