@@ -13,7 +13,7 @@ cd vendor/libgit2 && mkdir build
 cd build
 
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
-FLAGS="${FLAGS} -lws2_32"
+FLAGS="${FLAGS} -lwinhttp -lcrypt32 -lrpcrt4 -lole32"
 export CGO_LDFLAGS="$LGIT2_BUILD/libgit2.a -L$LGIT2_BUILD ${FLAGS}"
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
