@@ -1,22 +1,23 @@
 #!/bin/sh
-set -ex
-
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
-export GOROOT=/c/Go/
-export GOPATH=/c/gopath
 
-PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
-git clone https://github.com/libgit2/git2go.git $PROJPATH
-cd $PROJPATH
-git submodule update --init
-cd vendor/libgit2 && mkdir build
-cd build
+# export GOROOT=/c/Go/
+# export GOPATH=/c/gopath
 
-sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
-sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
-sed -i -- 's/USE_SSH.*"Link with libssh to enable SSH support".*ON/USE_SSH  "Link with libssh to enable SSH support"  OFF/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+# PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
+# git clone https://github.com/libgit2/git2go.git $PROJPATH
+# cd $PROJPATH
+# git submodule update --init
+# cd vendor/libgit2 && mkdir build
+# cd build
 
-cat $PROJPATH/vendor/libgit2/CMakeLists.txt
+# sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+# sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+# sed -i -- 's/USE_SSH.*"Link with libssh to enable SSH support".*ON/USE_SSH  "Link with libssh to enable SSH support"  OFF/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+
+# cat $PROJPATH/vendor/libgit2/CMakeLists.txt
+
+cd vendor/libgit2 && mkdir build && cd build
 
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
 FLAGS="-lws2_32"
