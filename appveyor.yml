@@ -4,6 +4,10 @@ os: Visual Studio 2015
 
 clone_folder: c:\gopath\src\github.com\git-time-metric\gtm
 
+environment:
+  GOPATH: /c/gopath
+  GOROOT: /c/Go
+
 install:
   - echo %PATH%
   - echo %GOPATH%

@@ -8,6 +8,8 @@ cd $GIT2GO_PATH/vendor/libgit2 && mkdir build && cd build
 LIBGIT2_BUILD=$GIT2GO_PATH/vendor/libgit2/build
 FLAGS="-lws2_32"
 export CGO_LDFLAGS="$LIBGIT2_BUILD/libgit2.a -L$LIBGIT2_BUILD ${FLAGS}"
+cd $GIT2GO_PATH
+
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
       -DBUILD_SHARED_LIBS=OFF \
