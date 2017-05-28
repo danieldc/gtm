@@ -14,7 +14,7 @@ before_install:
   - git submodule update --init
   - sudo apt-get remove libssl-dev || true
   - make install-static
-  - cd $TRAVIS_BUILD_DIR
+  - go get github.com/mattn/goveralls
 
 before_deploy:
   - go build -v -ldflags "-X main.Version=${TRAVIS_TAG}"
@@ -22,8 +22,7 @@ before_deploy:
 
 script:
   - cd $TRAVIS_BUILD_DIR
-  - go get github.com/mattn/goveralls
-  - $HOME/gopath/bin/goveralls -service=travis-ci
+  - $HOME/gopath/bin/goveralls -flags=--tags=static -service=travis-ci
 
 deploy:
   provider: releases
