@@ -10,7 +10,7 @@ cd /c/gopath/src/github.com/libgit2/git2go
 git checkout master
 git submodule update --init
 
-$env:PKG_CONFIG_PATH="C:\libgit2\lib\pkgconfig"
+$env:PKG_CONFIG_PATH="../install"
 make install-static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
