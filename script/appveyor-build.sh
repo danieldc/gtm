@@ -3,12 +3,11 @@ set -ex
 
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
 
-GIT2GO_PATH=/c/gopath/src/github.com/libgit2/git2go
-cd $GIT2GO_PATH/vendor/libgit2 && mkdir build && cd build
-LIBGIT2_BUILD=$GIT2GO_PATH/vendor/libgit2/build
+GIT2GO_PATH="$GOPATH/src/github.com/libgit2/git2go"
+mkdir $GIT2GO_PATH/vendor/libgit2/build && cd build
+LIBGIT2_BUILD="${PWD}"
 FLAGS="-lws2_32"
 export CGO_LDFLAGS="$LIBGIT2_BUILD/libgit2.a -L$LIBGIT2_BUILD ${FLAGS}"
-cd $GIT2GO_PATH
 
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
@@ -19,10 +18,12 @@ cmake -DTHREADSAFE=ON \
       -DWINHTTP=OFF \
       -G "MSYS Makefiles" \
       .. &&
+
 cmake --build . --target install
+
 cd $GIT2GO_PATH && go install --tags static
 
-cd /c/gopath/src/github.com/git-time-metric/gtm
+cd $GOPATH/src/github.com/git-time-metric/gtm
 go get -d ./...
 go test --tags static ./...
 if [[ "${APPVEYOR_REPO_TAG}" = true ]]; then
