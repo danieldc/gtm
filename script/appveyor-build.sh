@@ -17,7 +17,8 @@ export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$
 
 # cat $PROJPATH/vendor/libgit2/CMakeLists.txt
 
-cd vendor/libgit2 && mkdir build && cd build
+PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
+cd $PROJPATH && cd vendor/libgit2 && mkdir build && cd build
 
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
 FLAGS="-lws2_32"
