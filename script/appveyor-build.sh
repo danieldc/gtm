@@ -18,6 +18,7 @@ export GOROOT=/c/Go/
 export GOPATH=/c/gopath
 export BUILD="$PWD/vendor/libgit2/build"
 export PCFILE="$BUILD/libgit2.pc"
+FLAGS=$(pkg-config --static --libs $PCFILE)
 FLAGS="${FLAGS} -lws2_32"
 export CGO_LDFLAGS="$BUILD/libgit2.a -L$BUILD ${FLAGS}"
 export CGO_CFLAGS="-I$PWD/vendor/libgit2/include"
