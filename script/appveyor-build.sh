@@ -10,7 +10,8 @@ cd /c/gopath/src/github.com/libgit2/git2go
 git checkout master
 git submodule update --init
 
-make build-libgit2
+LDFLAGS = $(shell pkg-config --libs libgit2)
+CFLAGS = $(shell pkg-config --cflags libgit2)
 make install-static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
