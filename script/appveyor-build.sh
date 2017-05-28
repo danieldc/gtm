@@ -9,11 +9,16 @@ git clone https://github.com/libgit2/git2go.git $GOPATH/src/github.com/libgit2/g
 cd /c/gopath/src/github.com/libgit2/git2go
 git checkout master
 git submodule update --init
+cd vendor/libgit2
+mkdir build
+cd build
+cmake .. -DBUILD_SHARED_LIBS=OFF -DBUILD_CLAR=OFF -DTHREADSAFE=ON
+cmake --build .
+cmake --build . --target install
+cd /c/gopath/src/github.com/libgit2/git2go
+go install --tag static
 
-LDFLAGS = $(shell pkg-config --libs libgit2)
-CFLAGS = $(shell pkg-config --cflags libgit2)
-make install-static
-
+cd /c/gopath/src/github.com/git-time-metric/gtm
 go get -d ./...
 go test --tags static ./...
 
