@@ -14,7 +14,6 @@ LDFLAGS = $(shell pkg-config --libs libgit2)
 CFLAGS = $(shell pkg-config --cflags libgit2)
 make install-static
 
-cd /c/gopath/src/github.com/git-time-metric/gtm
 go get -d ./...
 go test --tags static ./...
 
