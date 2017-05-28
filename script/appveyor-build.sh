@@ -18,13 +18,16 @@ export GOROOT=/c/Go/
 export GOPATH=/c/gopath
 export BUILD="$PWD/vendor/libgit2/build"
 export PCFILE="$BUILD/libgit2.pc"
-FLAGS=$(pkg-config --static --libs $PCFILE)
 FLAGS="${FLAGS} -lws2_32"
 export CGO_LDFLAGS="$BUILD/libgit2.a -L$BUILD ${FLAGS}"
 export CGO_CFLAGS="-I$PWD/vendor/libgit2/include"
-cmake .. -DBUILD_SHARED_LIBS=OFF -DBUILD_CLAR=OFF -DTHREADSAFE=ON
-cmake --build .
-cmake --build . --target install
+cmake -DTHREADSAFE=ON \
+      -DBUILD_CLAR=OFF \
+      -DBUILD_SHARED_LIBS=OFF \
+      -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+      -DCMAKE_INSTALL_PREFIX=install \
+      -G "MSYS Makefiles" \
+      ...
 cd /c/gopath/src/github.com/libgit2/git2go
 go install --tags static
 
