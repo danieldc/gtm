@@ -13,7 +13,7 @@ cd vendor/libgit2 && mkdir build
 cd build
 
 # use bundled zlib
-sed --in-place "s/.*ZLIB_FOUND.*/.*FALSE.*/" $PROJPATH/vendor/libgit2/CMakeLists.txt
+sed --in-place "s/.*ZLIB_FOUND.*/FALSE/" $PROJPATH/vendor/libgit2/CMakeLists.txt
 
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
 FLAGS="${FLAGS} -lwinhttp -lcrypt32 -lrpcrt4 -lole32"
