@@ -13,7 +13,7 @@ before_install:
   - git checkout master
   - git submodule update --init
   - sudo apt-get remove libssl-dev || true
-  - make install
+  - make install-static
   - cd $TRAVIS_BUILD_DIR
 
 before_deploy:
