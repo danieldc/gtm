@@ -8,8 +8,8 @@ go:
   - 1.8
 
 before_install:
-  - git clone https://github.com/git-time-metric/git2go.git $GOPATH/src/github.com/git-time-metric/git2go
-  - cd $GOPATH/src/github.com/git-time-metric/git2go
+  - git clone https://github.com/libgit2/git2go $GOPATH/src/github.com/libgi2/git2go
+  - cd $GOPATH/src/github.com/libgit2/git2go
   - git checkout master
   - git submodule update --init
   - sudo apt-get remove libssl-dev || true
