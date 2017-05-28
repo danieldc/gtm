@@ -24,6 +24,7 @@ cmake -DTHREADSAFE=ON \
       -DCMAKE_C_FLAGS=-fPIC \
       -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
       -DCMAKE_INSTALL_PREFIX=../install \
+      -DUSE_SSH=OFF \	
       -DWINHTTP=OFF \
       -G "MSYS Makefiles" \
       .. &&
