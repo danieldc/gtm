@@ -1,28 +1,13 @@
 #!/bin/sh
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
 
-# export GOROOT=/c/Go/
-# export GOPATH=/c/gopath
+GIT2GO_PATH=$GOPATH/src/github.com/libgit2/git2go
+cd $GIT2GO_PATH
+cd vendor/libgit2 && mkdir build && cd build
 
-# PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
-# git clone https://github.com/libgit2/git2go.git $PROJPATH
-# cd $PROJPATH
-# git submodule update --init
-# cd vendor/libgit2 && mkdir build
-# cd build
-
-# sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
-# sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
-# sed -i -- 's/USE_SSH.*"Link with libssh to enable SSH support".*ON/USE_SSH  "Link with libssh to enable SSH support"  OFF/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
-
-# cat $PROJPATH/vendor/libgit2/CMakeLists.txt
-
-PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
-cd $PROJPATH && cd vendor/libgit2 && mkdir build && cd build
-
-LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
+LIBGIT2_BUILD=$GIT2GO_PATH/vendor/libgit2/build
 FLAGS="-lws2_32"
-export CGO_LDFLAGS="$LGIT2_BUILD/libgit2.a -L$LGIT2_BUILD ${FLAGS}"
+export CGO_LDFLAGS="$LIBGIT2_BUILD/libgit2.a -L$LIBGIT2_BUILD ${FLAGS}"
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
       -DBUILD_SHARED_LIBS=OFF \
@@ -32,9 +17,10 @@ cmake -DTHREADSAFE=ON \
       -DWINHTTP=OFF \
       -G "MSYS Makefiles" \
       .. &&
+
 cmake --build . --target install
 
-cd /c/gopath/src/github.com/libgit2/git2go
+cd $LIBGIT2_PATH
 go install --tags static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
