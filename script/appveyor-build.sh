@@ -12,11 +12,9 @@ git submodule update --init
 cd vendor/libgit2 && mkdir build
 cd build
 
-# use bundled zlib
 sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
-
-# make sure libssh2 is not included
 sed -i -- 's/USE_SSH/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
 
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
 FLAGS=""
