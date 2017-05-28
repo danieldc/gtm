@@ -17,7 +17,7 @@ sed -i -- 's/USE_SSH/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
 sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
 
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
-FLAGS=""
+FLAGS="-lws2_32"
 export CGO_LDFLAGS="$LGIT2_BUILD/libgit2.a -L$LGIT2_BUILD ${FLAGS}"
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
