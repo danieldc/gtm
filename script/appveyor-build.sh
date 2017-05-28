@@ -5,16 +5,17 @@ export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$
 export GOROOT=/c/Go/
 export GOPATH=/c/gopath
 
-git clone https://github.com/git-time-metric/git2go.git $GOPATH/src/github.com/git-time-metric/git2go
-cd /c/gopath/src/github.com/git-time-metric/git2go
-git checkout next
+git clone https://github.com/libgit2/git2go.git $GOPATH/src/github.com/libgit2/git2go
+cd /c/gopath/src/github.com/libgit2/git2go
+git checkout master
 git submodule update --init
 
-make install
+make install-static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
-go get -t -v ./...
-go test -v ./...
+go get -d ./...
+go test --tags static ./...
+
 if [[ "${APPVEYOR_REPO_TAG}" = true ]]; then
     go build -v -ldflags "-X main.Version=${APPVEYOR_REPO_TAG_NAME}"
     tar -zcf gtm.${APPVEYOR_REPO_TAG_NAME}.windows.tar.gz gtm.exe
