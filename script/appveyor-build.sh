@@ -26,7 +26,8 @@ cmake -DTHREADSAFE=ON \
 cmake --build . --target install
 
 cd /c/gopath/src/github.com/libgit2/git2go
-go install --tags static
+go install
+# go install --tags static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
 go get -d ./...
