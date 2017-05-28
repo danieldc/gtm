@@ -5,14 +5,16 @@ export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$
 export GOROOT=/c/Go/
 export GOPATH=/c/gopath
 
-git clone https://github.com/libgit2/git2go.git $GOPATH/src/github.com/libgit2/git2go
-cd /c/gopath/src/github.com/libgit2/git2go
-git checkout master
+PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
+git clone https://github.com/libgit2/git2go.git $PROJPATH
+cd $PROJPATH
 git submodule update --init
-cd vendor/libgit2
-mkdir build
+cd vendor/libgit2 && mkdir build
 cd build
 
+LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
+FLAGS="${FLAGS} -lws2_32"
+export CGO_LDFLAGS="$LGIT2_BUILD/libgit2.a -L$LGIT2_BUILD ${FLAGS}"
 cmake -DTHREADSAFE=ON \
       -DBUILD_CLAR=OFF \
       -DBUILD_SHARED_LIBS=OFF \
