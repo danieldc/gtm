@@ -6,6 +6,7 @@ export GOROOT=/c/Go/
 export GOPATH=/c/gopath
 
 # remove zlib
+C:/msys64/mingw64/lib/libz.dll.a
 
 PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
 git clone https://github.com/libgit2/git2go.git $PROJPATH
