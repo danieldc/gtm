@@ -1,3 +1,6 @@
+#!/bin/sh
+set -e
+
 COMMIT_HASH=daee43b89171725a719f0bafebbb348d855156fe
 PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
 git clone https://github.com/libgit2/git2go.git $PROJPATH

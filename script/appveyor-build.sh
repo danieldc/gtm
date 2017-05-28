@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$PATH
 
 GIT2GO_PATH=$GOPATH/src/github.com/libgit2/git2go
