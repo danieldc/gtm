@@ -8,10 +8,14 @@ go:
   - 1.8
 
 before_install:
-  - git clone https://github.com/libgit2/git2go $GOPATH/src/github.com/libgit2/git2go
-  - cd $GOPATH/src/github.com/libgit2/git2go
+  - PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
+  - git clone https://github.com/libgit2/git2go $PROJPATH
+  - cd $PROJPATH
   - git checkout master
   - git submodule update --init
+  - sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+  - sed -i -- 's/OPENSSL_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+  - sed -i -- 's/USE_SSH.*"Link with libssh to enable SSH support".*ON/USE_SSH  "Link with libssh to enable SSH support"  OFF/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
   - sudo apt-get remove libssl-dev || true
   - make install-static
   - go get github.com/mattn/goveralls
