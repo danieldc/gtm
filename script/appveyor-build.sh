@@ -5,6 +5,8 @@ export PATH=/c/msys64/mingw64/bin:/c/msys64/usr/bin:/c/Go/bin:/c/gopath/go/bin:$
 export GOROOT=/c/Go/
 export GOPATH=/c/gopath
 
+sudo apt-get remove zlib-bin
+
 PROJPATH="$GOPATH/src/github.com/libgit2/git2go"
 git clone https://github.com/libgit2/git2go.git $PROJPATH
 cd $PROJPATH
@@ -26,8 +28,7 @@ cmake -DTHREADSAFE=ON \
 cmake --build . --target install
 
 cd /c/gopath/src/github.com/libgit2/git2go
-go install
-# go install --tags static
+go install --tags static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
 go get -d ./...
