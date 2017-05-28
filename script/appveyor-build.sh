@@ -11,7 +11,6 @@ git checkout master
 git submodule update --init
 
 make build-libgit2
-$env:PKG_CONFIG_PATH="C:\gopath\src\github.com\libgit2\git2go\vendor\libgit2\install\lib"
 make install-static
 
 cd /c/gopath/src/github.com/git-time-metric/gtm
