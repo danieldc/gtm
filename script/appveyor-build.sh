@@ -15,6 +15,9 @@ cd build
 # use bundled zlib
 sed -i -- 's/ZLIB_FOUND/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
 
+# make sure libssh2 is not included
+sed -i -- 's/USE_SSH/FALSE/g' $PROJPATH/vendor/libgit2/CMakeLists.txt
+
 LGIT2_BUILD=$PROJPATH/vendor/libgit2/build
 FLAGS=""
 export CGO_LDFLAGS="$LGIT2_BUILD/libgit2.a -L$LGIT2_BUILD ${FLAGS}"
@@ -24,7 +27,6 @@ cmake -DTHREADSAFE=ON \
       -DCMAKE_C_FLAGS=-fPIC \
       -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
       -DCMAKE_INSTALL_PREFIX=../install \
-      -DUSE_SSH=OFF \	
       -DWINHTTP=OFF \
       -G "MSYS Makefiles" \
       .. &&
